@@ -15,6 +15,8 @@
       margin: 0;
     }
     #affirmation-container {
+      width: 600px;
+      height: 100px;
       text-align: center;
       background-color: #b8acac;
       padding: 50px;
@@ -28,19 +30,21 @@
   </div>
 
   <script>
-    const affirmations = [
-      "I am confident and capable.",
-      "I attract positivity into my life.",
-      "I am worthy of success and happiness.",
-    ];
-
-    function getRandomAffirmation() {
-      return affirmations[Math.floor(Math.random() * affirmations.length)];
+    async function getRandomAffirmation() {
+      try {
+        const response = await fetch("affirmations.json");
+        const data = await response.json();
+        const affirmations = data.affirmations;
+        
+        return affirmations[Math.floor(Math.random() * affirmations.length)];
+      } catch (error) {
+        console.error('Error fetching affirmations:', error);
+      }
     }
 
-    function updateAffirmation() {
+    async function updateAffirmation() {
       const affirmationText = document.getElementById('affirmation-text');
-      affirmationText.textContent = getRandomAffirmation();
+      affirmationText.textContent = await getRandomAffirmation();
     }
 
     updateAffirmation();
