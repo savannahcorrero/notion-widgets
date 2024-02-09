@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Affirmation Widget</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #affirmation-container {
+      text-align: center;
+      background-color: #b8acac;
+      padding: 20px;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div id="affirmation-container">
+    <h1 id="affirmation-text">Loading...</h1>
+  </div>
+
+  <script>
+    const affirmations = [
+      "I am confident and capable.",
+      "I attract positivity into my life.",
+      "I am worthy of success and happiness.",
+    ];
+
+    function getRandomAffirmation() {
+      return affirmations[Math.floor(Math.random() * affirmations.length)];
+    }
+
+    function updateAffirmation() {
+      const affirmationText = document.getElementById('affirmation-text');
+      affirmationText.textContent = getRandomAffirmation();
+    }
+
+    updateAffirmation();
+
+    setInterval(updateAffirmation, 86400000);
+  </script>
+</body>
+</html>
+
